@@ -15,6 +15,21 @@ class ApplicationController < ActionController::Base
     redirect_to '/welcome' if current_user
 	end
 
-  
+
+
+  before_action :require_login
+
+  private
+
+  def require_login
+    unless logged_in?
+  		redirect_to '/', alert: 'Please log in'
+    end
+  end
+
+  def logged_in?
+    !current_user.nil?
+  end
+
 
 end

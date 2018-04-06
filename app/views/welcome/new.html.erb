@@ -1,9 +1,14 @@
 <div class='jumbotron'>
 
-<h1>Welcome authorized user</h1>
+<h2>Welcome <%= current_user.name %> </h2>
 
 <% if flash[:alert] %>
-	<p id="notice"> <%= flash[:alert] %> </p>
+	<div class="alert alert-info" role="alert">
+		<p id="notice"> <%= flash[:alert] %> </p>
+	</div>
 <% end %>
+
+<p> you created your account at <%= current_user.created_at %> </p>
+
 
 </div>

@@ -1,9 +1,12 @@
 <div class='jumbotron'>
 
-<h1>welcome nonauthorized user</h1>
+<h2>Homepage</h2>
+
 
 <% if flash[:alert] %>
-	<p id="notice"> <%= flash[:alert] %> </p>
+	<div class="alert alert-info" role="alert">
+		<p id="notice"> <%= flash[:alert] %> </p>
+	</div>
 <% end %>
 
 </div<

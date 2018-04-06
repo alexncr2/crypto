@@ -1,11 +1,10 @@
 class WelcomeController < ApplicationController
+	skip_before_action :require_login, only: [:index]
 
     def new
     end
 
   	def create
-      current_user
-      authorize
   	end
 
     def index

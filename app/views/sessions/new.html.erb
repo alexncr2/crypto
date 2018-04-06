@@ -4,7 +4,9 @@
 <div class="card card-body bg-default">
 
 	<% if flash[:alert] %>
-		<p id="notice"> <%= flash[:alert] %> </p>
+		<div class="alert alert-info" role="alert">
+			<p id="notice"> <%= flash[:alert] %> </p>
+		</div>
 	<% end %>
 
 
@@ -21,12 +23,6 @@
 				<%= label_tag :password, 'Password ' %>
 				<%= password_field_tag :password, '', :class => "form-control text-left" %>
 			</div>
-
-
-		  <div class="form-check">
-			<%= label_tag :remember_me, 'Remeber me? '%>
-				<%= check_box :remember_me, :class=>"form-check-input", :type => "checkbox" %>
-		  </div>
 
 			<div class="form-text text-muted">
 				<p> If you don't have an account please <%= link_to 'Sign Up', signup_url %> </p>
