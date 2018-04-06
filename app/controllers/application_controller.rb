@@ -1,8 +1,8 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
-  	def current_user
-  		@current_user ||= User.find session[:user_id] if session[:user_id]
+  def current_user
+  	@current_user ||= User.find session[:user_id] if session[:user_id]
   		#runs only if current_user isn't already set
 	end
 
@@ -12,6 +12,9 @@ class ApplicationController < ActionController::Base
 	#if user isn't logged in it isn't authorized
 	def authorize
 		redirect_to '/login' unless current_user
+    redirect_to '/welcome' if current_user
 	end
+
+  
 
 end

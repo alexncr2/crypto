@@ -32,7 +32,7 @@ gem 'bcrypt', '~> 3.1.7'
 
 
 gem 'jquery-rails'
-gem 'bootstrap-sass', '~> 3.2.0' 
+gem 'bootstrap-sass', '~> 3.2.0'
 
 
 # Use Capistrano for deployment

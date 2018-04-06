@@ -1,4 +1,7 @@
-<h1> Create New User </h1>
+
+<div class='jumbotron'>
+
+<div class="card card-body bg-default">
 
 
 <% if flash[:alert] %>
@@ -8,27 +11,30 @@
 <%= form_with(model: @user, url: '/signup') do |form| %>
 
 	<fieldset>
-		<legend><h2>Enter user details</h2></legend>
+		<legend><h3>Enter user details</h3></legend>
 
-		<div class="field">
+		<div class="form-group">
 			<%= form.label :name %>
-			<%= form.text_field :name, id: :user_name %>
+			<%= form.text_field :name, id: :user_name , :class => 'form-control text-left' %>
 		</div>
 
-		<div class="field">
+				<div class="form-group">
 			<%= form.label :password %>
-			<%= form.password_field :password, id: :user_password %>
+			<%= form.password_field :password, id: :user_password , :class => 'form-control text-left' %>
 		</div>
-		
-		<div class="field">
+
+				<div class="form-group">
 			<%= form.label :password_confirmation%>
-			<%= form.password_field :password_confirmation, id: :user_password_confirmation %>
+			<%= form.password_field :password_confirmation, id: :user_password_confirmation , :class => 'form-control text-left' %>
 		</div>
 
 		<div class="actions">
-			<%= form.submit  %>
+			<%= form.submit :'Create User', class: 'btn btn-success'  %>
 		</div>
 
 	</fieldset>
 
 <% end %>
+
+</div>
+</div>
