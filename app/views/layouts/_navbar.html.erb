@@ -16,9 +16,11 @@
       <ul class="nav navbar-nav">
         <li><%= link_to "Home", root_url %></li>
         <li><%= link_to "Welcome", welcome_url %></li>
-        <li><%= link_to "SignUp", signup_url %></li>
-        <li><%= link_to "LogIn", login_url %></li>
-        <% if !current_user.nil? %>
+        <% if !logged_in? %>
+          <li><%= link_to "SignUp", signup_url %></li>
+          <li><%= link_to "LogIn", login_url %></li>
+        <% end %>
+        <% if logged_in? %>
           <li><%= link_to "LogOut", logout_url %></li>
         <% end %>
       </ul>
