@@ -8,27 +8,21 @@ class ApplicationController < ActionController::Base
 
 	helper_method :current_user
 
-	#homework: use this method in a new controller
-	#if user isn't logged in it isn't authorized
-	def authorize
-		redirect_to '/login' unless current_user
-    redirect_to '/welcome' if current_user
-	end
+	#homework: use this method in a new controller. if user isn't logged in it isn't authorized
+    before_action :authorize
+    
 
-
-
-  before_action :require_login
-
-  private
-
-  def require_login
-    unless logged_in?
-  		redirect_to '/', alert: 'Please log in'
+    private
+    def authorize
+        unless logged_in?
+    		redirect_to '/login', alert: 'you have to log in to access this page'
+        end
     end
-  end
 
     def logged_in?
-      !current_user.nil?
+        !current_user.nil?
     end
+
+
 
 end

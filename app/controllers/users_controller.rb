@@ -1,9 +1,12 @@
 class UsersController < ApplicationController
 
-	skip_before_action :require_login, only: [:new, :create]
+	skip_before_action :authorize, only: [:new, :create]
 
 	def new
 		@user = User.new
+		if logged_in?
+			redirect_to '/', alert: 'Already registered'
+		end
 	end
 
 

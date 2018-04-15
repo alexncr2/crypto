@@ -1,8 +1,11 @@
 class SessionsController < ApplicationController
 
-	skip_before_action :require_login, only: [:new, :create]
+	skip_before_action :authorize, only: [:new, :create]
 
 	def new
+		if logged_in?
+			redirect_to '/', alert: 'Already logged in'
+		end
 	end
 
 	def create
