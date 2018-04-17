@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Currencies</h1>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Price</th>
+      <th>Amount to buy</th>
+      <th>Action</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @currencies.each do |currency| %>
+      <tr>
+        <td> 
+        <%= image_tag("#{currency.name.downcase.gsub(' ', '_')}.svg", size: '23x23') %>
+        <%= currency.name %>
+        (<%= currency.symbol %>) 
+        </td>
+        <td> <%= number_to_currency(currency.price) %></td>
+        <%= form_with url: buy_currency_path(currency.id), method: :post do |f| %>
+          <td> <%= f.number_field :amount, step: :any %> </td>
+          <td> <%= f.submit 'Buy!', class: 'btn btn-primary', data: { disable_with: false } %> </td>
+        <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
