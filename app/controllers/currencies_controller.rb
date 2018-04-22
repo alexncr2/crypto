@@ -1,5 +1,6 @@
 class CurrenciesController < ApplicationController
   before_action :set_currency, only: [:buy, :show, :edit, :update, :destroy]
+  before_action :authorize
 
   # GET /currencies
   # GET /currencies.json
@@ -71,7 +72,7 @@ class CurrenciesController < ApplicationController
       quantity: amount,
       user_id: current_user.id
       )
-    redirect_to currencies_path, notice: 'successfully bought coins'
+    redirect_to currencies_path, notice: 'Successfully bought coins'
   end
 
 

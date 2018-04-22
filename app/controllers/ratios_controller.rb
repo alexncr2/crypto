@@ -1,5 +1,6 @@
 class RatiosController < ApplicationController
   before_action :set_ratio, only: [:show, :edit, :update, :destroy]
+  before_action :authorize
 
   # GET /ratios
   # GET /ratios.json

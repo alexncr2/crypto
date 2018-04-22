@@ -1,6 +1,13 @@
-<p id="notice"><%= notice %></p>
+
+<div class="jumbotron">
 
 <h1>Currencies</h1>
+
+<% if flash[:notice] %>
+	<div class="alert alert-success" role="alert">
+		<p id="notice"> <%= flash[:notice] %> </p>
+	</div>
+<% end %>
 
 <table class="table">
   <thead>
@@ -16,10 +23,10 @@
   <tbody>
     <% @currencies.each do |currency| %>
       <tr>
-        <td> 
+        <td>
         <%= image_tag("#{currency.name.downcase.gsub(' ', '_')}.svg", size: '23x23') %>
         <%= currency.name %>
-        (<%= currency.symbol %>) 
+        (<%= currency.symbol %>)
         </td>
         <td> <%= number_to_currency(currency.price) %></td>
         <%= form_with url: buy_currency_path(currency.id), method: :post do |f| %>
@@ -30,5 +37,6 @@
     <% end %>
   </tbody>
 </table>
+</div>
 
 <br>

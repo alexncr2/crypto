@@ -16,12 +16,12 @@
       <ul class="nav navbar-nav">
         <li><%= link_to "Home", root_url %></li>
         <li><%= link_to "Welcome", welcome_url %></li>
+        <li><%= link_to "Currency", currencies_url %></li>
         <% if !logged_in? %>
           <li><%= link_to "SignUp", signup_url %></li>
           <li><%= link_to "LogIn", login_url %></li>
         <% end %>
         <% if logged_in? %>
-          <li><%= link_to "Currency", currencies_url %></li>
           <li><%= link_to "LogOut", logout_url %></li>
         <% end %>
       </ul>
