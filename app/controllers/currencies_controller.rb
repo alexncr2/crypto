@@ -1,5 +1,5 @@
 class CurrenciesController < ApplicationController
-  before_action :set_currency, only: [:buy, :show, :edit, :update, :destroy]
+  before_action :set_currency, only: [:buy, :show, :edit, :update, :destroy, :open_modal]
   before_action :authorize
 
   # GET /currencies
@@ -73,6 +73,15 @@ class CurrenciesController < ApplicationController
       user_id: current_user.id
       )
     redirect_to currencies_path, notice: 'Successfully bought coins'
+
+  end
+
+
+  def open_modal
+    #@currencies = params[:currency_id]
+    @amount = params[:quantity].to_i
+
+    render :partial => 'render_modal'
   end
 
 

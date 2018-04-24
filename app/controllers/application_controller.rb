@@ -8,7 +8,7 @@ class ApplicationController < ActionController::Base
 
 	helper_method :current_user
 
-	#homework: use this method in a new controller. if user isn't logged in it isn't authorized
+
     before_action :authorize
     
 

@@ -1,9 +1,12 @@
 Rails.application.routes.draw do
+  get 'dashboard/index'
+
   resources :ratios
   resources :amounts
   resources :currencies do
     member do
       post 'buy', to: 'currencies#buy'
+      get 'open_modal', to: 'currencies#open_modal'
     end
   end
 
@@ -20,6 +23,7 @@ Rails.application.routes.draw do
   get '/welcome' => 'welcome#new'
   post '/welcome' => 'welcome#create'
 
-  root to: 'welcome#index'
+  root to: 'dashboard#index'
+
 
 end
