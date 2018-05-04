@@ -9,7 +9,9 @@ class Currency < ApplicationRecord
 
 	def current_ratio
 		self.ratios.last.ratio
+		puts self.to_yaml
 	end
+
 
 	#static method
 	def self.default_ratio
