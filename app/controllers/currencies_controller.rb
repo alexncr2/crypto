@@ -67,13 +67,39 @@ class CurrenciesController < ApplicationController
 
   def buy
     amount = params[:amount]
-    Amount.create(
-      currency_id: @currency.id,
-      quantity: amount,
-      user_id: current_user.id
-      )
-    redirect_to currencies_path, notice: 'Successfully bought coins'
 
+    buyer_currency = params[:buyer_currency]
+    quantity_bought = params[:quantity]
+    paid_amount = params[:paid]
+
+
+
+    bought_entry = Amount.find_by(currency_id: @currency.id, user_id: current_user.id)
+    if bought_entry.nil?
+        Amount.create(currency_id: @currency.id, quantity: quantity_bought, user_id: current_user.id)
+    else
+        current_quantity =  bought_entry.quantity
+        bought_entry.update_attributes(quantity: current_quantity.to_f + quantity_bought.to_f)
+    end
+
+    Transaction.create(user_id: current_user.id, original_currency_id: buyer_currency,
+        original_currency_amount: paid_amount, final_currency_id: @currency.id, final_currency_amount: quantity_bought.to_f * paid_amount.to_f)
+
+
+    paid_entry = Amount.find_by(currency_id: buyer_currency, user_id: current_user.id)
+    if paid_entry.nil?
+    else
+        current_quantity = paid_entry.quantity
+        new_quantity = current_quantity.to_f - paid_amount.to_f;
+        if new_quantity == 0
+            paid_entry.destroy
+        else
+            paid_entry.update_attributes(quantity: new_quantity)
+        end
+    end
+    
+
+    redirect_to currencies_path, notice: 'Successfully bought coins'
   end
 
 

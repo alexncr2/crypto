@@ -6,19 +6,21 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-Currency.create(name: 'Bitcoin')
-Currency.create(name: 'Ethereum')
-Currency.create(name: 'Ripple')
-Currency.create(name: 'Litecoin')
-Currency.create(name: 'Cardano')
-Currency.create(name: 'Stellar')
-Currency.create(name: 'NEO')
-Currency.create(name: 'IOTA')
-Currency.create(name: 'EOS')
-Currency.create(name: 'Bitcoin Cash')
-Currency.create(name: 'Tron')
-Currency.create(name: 'QTUM')
-Currency.create(name: 'USD', default: true)
+if Currency.find_by(name: 'USD').nil?
+	Currency.create(name: 'Bitcoin')
+	Currency.create(name: 'Ethereum')
+	Currency.create(name: 'Ripple')
+	Currency.create(name: 'Litecoin')
+	Currency.create(name: 'Cardano')
+	Currency.create(name: 'Stellar')
+	Currency.create(name: 'NEO')
+	Currency.create(name: 'IOTA')
+	Currency.create(name: 'EOS')
+	Currency.create(name: 'Bitcoin Cash')
+	Currency.create(name: 'Tron')
+	Currency.create(name: 'QTUM')
+	Currency.create(name: 'USD', default: true)
+end
 
 
 Currency.find_by(name: 'USD').update_attributes(symbol: 'USD')
@@ -41,6 +43,7 @@ end
 
 
 
+if Ratio.find_by(id: 1).nil?
 Ratio.create({
    currency_id: Currency.where(name: 'USD').first.id,
    ratio: 1
@@ -93,3 +96,4 @@ Ratio.create({
    currency_id: Currency.find_by(name: 'QTUM').id,
    ratio: 0.98
 })
+end

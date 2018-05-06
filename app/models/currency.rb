@@ -4,12 +4,12 @@ class Currency < ApplicationRecord
 	#from_currency is default nil
 	def price(from_currency = nil)
 		from_ratio = from_currency.nil? ? Currency.default_ratio : from_currency.ratios.last.ratio
-		(from_ratio / current_ratio).round(3)
+		(from_ratio / current_ratio).round(5)
 	end
 
 	def current_ratio
-		self.ratios.last.ratio
 		puts self.to_yaml
+		self.ratios.last.ratio
 	end
 
 
