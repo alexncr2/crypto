@@ -6,6 +6,8 @@ class CurrenciesController < ApplicationController
   # GET /currencies.json
   def index
     @currencies = Currency.where.not(default: true)
+
+    #amountsInWallet
   end
 
   # GET /currencies/1
@@ -108,6 +110,21 @@ class CurrenciesController < ApplicationController
     @amount = params[:quantity].to_i
 
     render :partial => 'render_modal'
+  end
+
+
+  def generate_chart
+
+    wallet_currencies = []
+
+    current_user.amounts.each do  |amount|
+      coin_name = amount.currency.name
+      q = amount.quantity.to_f * amount.currency.price.to_f
+
+      wallet_currencies << [coin_name, q]
+
+    end
+    render json:{currencies: wallet_currencies}
   end
 
 

@@ -4,11 +4,18 @@ Rails.application.routes.draw do
   resources :ratios
   resources :amounts
   resources :currencies do
+    
     member do
       post 'buy', to: 'currencies#buy'
       get 'open_modal', to: 'currencies#open_modal'
     end
+    
+    collection do
+      get 'generate_chart', to: 'currencies#generate_chart'
+    end
+  
   end
+  #member means smth like /whatever/blabla
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
@@ -22,6 +29,8 @@ Rails.application.routes.draw do
 
   get '/welcome' => 'welcome#new'
   post '/welcome' => 'welcome#create'
+
+
 
   root to: 'dashboard#index'
 

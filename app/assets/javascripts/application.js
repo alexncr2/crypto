@@ -11,6 +11,8 @@
 // about supported directives.
 //
 //= require jquery
+//= require c3/c3.min.js
+//= require c3/d3-4.13.0.min.js
 //= require bootstrap-sprockets
 //= require bootstrap
 //= require rails-ujs
