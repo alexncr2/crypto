@@ -23,6 +23,7 @@ $(document).ready(function(){
 	}
 
 	readValues(generateChart);
+	
 	old_values = values;
 
 	function updateChart(data){
