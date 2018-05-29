@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
   get 'dashboard/index'
 
+
+  mount ResqueWeb::Engine => '/resque_web'
+
   resources :ratios
   resources :amounts
   resources :currencies do
@@ -29,6 +32,7 @@ Rails.application.routes.draw do
 
   get '/welcome' => 'welcome#new'
   post '/welcome' => 'welcome#create'
+
 
 
 

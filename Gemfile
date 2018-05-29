@@ -34,7 +34,11 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'jquery-rails'
 gem 'bootstrap-sass', '~> 3.2.0'
 gem 'httparty'
-#gem 'digest'
+gem 'digest'
+
+gem 'resque'
+gem 'resque-web', require: 'resque_web'
+gem 'redis'
 
 
 # Use Capistrano for deployment
@@ -43,6 +47,7 @@ gem 'httparty'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  gem 'rspec-rails', '~>3.7'
 end
 
 group :development do
